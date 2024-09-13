@@ -13,6 +13,10 @@ body {
     align-items: center;
 }
 
+/* 
+    DROPDOWN
+*/
+
 .formElement {
     display: flex;
     flex-direction: column;
@@ -36,7 +40,7 @@ input:focus {
     border-color: black;
 }
 
-ul {
+.dropdown {
     background-color: white;
     border: 2px solid lightgray;
     padding: 0;
@@ -46,24 +50,69 @@ ul {
     top: 61px;
 }
 
-li {
+.dropdownValue {
     list-style: none;
     padding: 8px;
     color: #414141;
 }
 
-li:first-child {
+.dropdownValue:first-child {
     padding-top: 12px;
 }
 
-li:last-child {
+.dropdownValue:last-child {
     padding-bottom: 12px;
 }
 
-li:hover {
+.dropdownValue:hover {
     background-color: #afdcff;
 }
 
 .hidden {
     display: none;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+
+    border: none;
+}
+
+nav ul li {
+    padding: 8px 12px;
+    list-style-type: none;
+}
+
+a.activeLink {
+    text-decoration: underline;
+}
+
+/* 
+    CAROUSEL
+*/
+
+.carousel {
+    width: 100%;
+    height: 75vh;
+}
+
+.switcherRow {
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
+    font-size: 48px;
 }
