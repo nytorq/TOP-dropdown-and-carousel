@@ -123,16 +123,17 @@ a.activeLink {
     height: 10px;
     display: flex;
     flex-direction: row;
-    width: 50px;
+    width: 80px;
     margin-top: 10px;
     justify-content: space-between;
 }
 
 [class^="imageDot"] {
-    width: 4px;
-    height: 4px;
+    width: 8px;
+    height: 8px;
     border-radius: 10000px;
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .activeDot {

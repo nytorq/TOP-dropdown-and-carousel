@@ -143,6 +143,19 @@ function autoScroll() {
     setTimeout(autoScroll, 5000);
 }
 
+function goToImage() {
+    let destination = event.target.classList[0].split('-')[1];
+    // console.log(destination);
+    let image = document.querySelector('img');
+    image.src = images[destination];
+    let imageDots = document.querySelectorAll('[class^="imageDot"]');
+    console.log(imageDots);
+    for (let i = 0 ; i < imageDots.length ; i++) {
+        imageDots[i].classList.remove('activeDot');
+    }
+    document.querySelector(`.imageDot-${destination}`).classList.add('activeDot');
+}
+
 function loadCarousel() {
     const carousel = document.createElement('div');
     carousel.classList.add('carousel');
@@ -161,6 +174,7 @@ function loadCarousel() {
         imageDot.classList.add(`imageDot-${i}`);
         paginationDots.appendChild(imageDot);
     }
+    addGlobalEventListener('click', '[class^="imageDot"]', goToImage)
 
     // Creating arrows to switch image
     const leftArrow = document.createElement('span');
