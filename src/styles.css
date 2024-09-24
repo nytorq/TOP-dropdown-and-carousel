@@ -117,6 +117,7 @@ a.activeLink {
 
 .icon {
     font-size: 48px;
+    cursor: pointer;
 }
 
 .paginationDots {

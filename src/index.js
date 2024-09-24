@@ -145,11 +145,9 @@ function autoScroll() {
 
 function goToImage() {
     let destination = event.target.classList[0].split('-')[1];
-    // console.log(destination);
     let image = document.querySelector('img');
     image.src = images[destination];
     let imageDots = document.querySelectorAll('[class^="imageDot"]');
-    console.log(imageDots);
     for (let i = 0 ; i < imageDots.length ; i++) {
         imageDots[i].classList.remove('activeDot');
     }
