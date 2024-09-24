@@ -1,6 +1,10 @@
 // scripts.js
 import "./styles.css";
 import image1 from "./images/image1.jpg";
+import image2 from "./images/image2.jpg";
+import image3 from "./images/image3.jpg";
+import image4 from "./images/image4.jpg";
+import image5 from "./images/image5.jpg";
 // Fundamentals
 const body = document.querySelector('body');
 let navAnchors = document.getElementsByTagName('a');
@@ -105,10 +109,38 @@ function loadDropdown() {
 }
 
 // Carousel showcase
-const images = []
+// Source for future images: https://picsum.photos/
+const images = [image1, image2, image3, image4, image5]
 
-function switchImage() {
-    console.log(event.target.innerText);
+function nextImage() {
+    let image = document.querySelector('img');
+    let currentIndex = images.indexOf(new URL(image.src).pathname);
+    let nextIndex = (currentIndex + 1) % images.length;
+    if (currentIndex === 4) {
+        image.src = images[0];
+    } else {
+        image.src = images[currentIndex + 1];
+    }
+    document.querySelector(`.imageDot-${currentIndex}`).classList.remove('activeDot');
+    document.querySelector(`.imageDot-${nextIndex}`).classList.add('activeDot');
+}
+
+function prevImage() {
+    let image = document.querySelector('img');
+    let currentIndex = images.indexOf(new URL(image.src).pathname);
+    let prevIndex = (currentIndex - 1 + images.length) % images.length;
+    if (currentIndex === 0) {
+        image.src = images[4];
+    } else {
+        image.src = images[currentIndex - 1];
+    }
+    document.querySelector(`.imageDot-${currentIndex}`).classList.remove('activeDot');
+    document.querySelector(`.imageDot-${prevIndex}`).classList.add('activeDot');
+}
+
+function autoScroll() {
+    nextImage();
+    setTimeout(autoScroll, 5000);
 }
 
 function loadCarousel() {
@@ -118,8 +150,17 @@ function loadCarousel() {
 
     // Loading container and its image
     const image = document.createElement('img');
-    image.src = image1;
+    image.src = images[0];
+    
     carousel.appendChild(image)
+
+    const paginationDots = document.createElement('div');
+    paginationDots.classList.add('paginationDots');
+    for ( let i = 0 ; i < images.length ; i++) {
+        const imageDot = document.createElement('span');
+        imageDot.classList.add(`imageDot-${i}`);
+        paginationDots.appendChild(imageDot);
+    }
 
     // Creating arrows to switch image
     const leftArrow = document.createElement('span');
@@ -133,9 +174,16 @@ function loadCarousel() {
     switcherRow.appendChild(leftArrow);
     switcherRow.appendChild(rightArrow);
     body.appendChild(switcherRow);
-    addGlobalEventListener('click', 'span.icon', switchImage);
+    addGlobalEventListener('click', 'span.icon', (event) => {
+        if (event.target.innerText === 'chevron_right') {
+            nextImage();
 
-
+        } else if (event.target.innerText === 'chevron_left') {
+            prevImage();
+        }
+    });
+    body.appendChild(paginationDots);
+    autoScroll();
 }
 // Time to load the page!
 

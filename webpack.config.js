@@ -7,6 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true, // Clean the output directory before emit
+    publicPath: '/', // Ensure correct public path
   },
   mode: 'development',
   module: {
@@ -17,12 +18,12 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        loader: 'html-loader',
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      }
+        type: 'asset/resource', // Use asset/resource for images
+      },
     ],
   },
   plugins: [

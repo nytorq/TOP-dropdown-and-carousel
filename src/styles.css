@@ -103,6 +103,8 @@ a.activeLink {
 .carousel {
     width: 100%;
     height: 75vh;
+    display: flex;
+    justify-content: center;
 }
 
 .switcherRow {
@@ -115,4 +117,24 @@ a.activeLink {
 
 .icon {
     font-size: 48px;
+}
+
+.paginationDots {
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 50px;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+[class^="imageDot"] {
+    width: 4px;
+    height: 4px;
+    border-radius: 10000px;
+    background-color: lightgray;
+}
+
+.activeDot {
+    background-color: black;
 }
