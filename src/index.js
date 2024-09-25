@@ -114,8 +114,17 @@ const images = [image1, image2, image3, image4, image5]
 
 function nextImage() {
     let image = document.querySelector('img');
-    let currentIndex = images.indexOf(new URL(image.src).pathname);
+    // let imageURL = new URL(image.src).pathname.split('/').pop();
+    // let imageURL = new URL(image.src);
+
+    // The following currentIndex worked in dev mode but not in production
+    // let currentIndex = images.indexOf(new URL(image.src).pathname.split('/').pop());
+    let currentIndex = images.indexOf(image.src);
     let nextIndex = (currentIndex + 1) % images.length;
+    // console.log(`imageURL = ${imageURL}`);
+    // console.log('currentIndex = ' + currentIndex + ' and nextIndex = ' + nextIndex);
+    // console.log(images);
+    // console.log(`image.src = ${image.src}`)
     if (currentIndex === 4) {
         image.src = images[0];
     } else {
@@ -127,8 +136,14 @@ function nextImage() {
 
 function prevImage() {
     let image = document.querySelector('img');
-    let currentIndex = images.indexOf(new URL(image.src).pathname);
+    
+    // The following currentIndex worked in dev mode but not in production
+    // let currentIndex = images.indexOf(new URL(image.src).pathname.split('/').pop());
+    let currentIndex = images.indexOf(image.src);
     let prevIndex = (currentIndex - 1 + images.length) % images.length;
+    // console.log('currentIndex = ' + currentIndex + ' and prevIndex = ' + prevIndex);
+    // console.log(images);
+    // console.log(`image.src = ${image.src}`)
     if (currentIndex === 0) {
         image.src = images[4];
     } else {
@@ -148,6 +163,7 @@ function goToImage() {
     let image = document.querySelector('img');
     image.src = images[destination];
     let imageDots = document.querySelectorAll('[class^="imageDot"]');
+    console.log(imageDots);
     for (let i = 0 ; i < imageDots.length ; i++) {
         imageDots[i].classList.remove('activeDot');
     }
